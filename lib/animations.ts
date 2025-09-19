@@ -1,22 +1,26 @@
 import { animate } from 'animejs';
+import type { Variants } from 'framer-motion';
 
 // Framer Motion variants
-export const fadeInUp = {
+// Use cubic-bezier arrays for `ease` to satisfy strict typings
+const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } }
 };
 
-export const fadeInLeft = {
+export const fadeInLeft: Variants = {
   hidden: { opacity: 0, x: -60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easeOut } }
 };
 
-export const fadeInRight = {
+export const fadeInRight: Variants = {
   hidden: { opacity: 0, x: 60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easeOut } }
 };
 
-export const staggerContainer = {
+export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -27,14 +31,14 @@ export const staggerContainer = {
   }
 };
 
-export const scaleIn = {
+export const scaleIn: Variants = {
   hidden: { scale: 0.8, opacity: 0 },
   visible: { 
     scale: 1, 
     opacity: 1, 
     transition: { 
       duration: 0.5, 
-      ease: "easeOut" 
+      ease: easeOut 
     } 
   }
 };
