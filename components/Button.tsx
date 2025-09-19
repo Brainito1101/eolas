@@ -10,6 +10,8 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -19,6 +21,8 @@ export default function Button({
   variant = 'primary',
   size = 'md',
   className = '',
+  type = 'button',
+  disabled = false,
 }: ButtonProps) {
   const baseClasses = "inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg";
   
@@ -41,7 +45,6 @@ export default function Button({
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className={classes}
-      onClick={onClick}
     >
       {children}
     </motion.span>
@@ -49,11 +52,22 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer">
+      <a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick}>
         {ButtonContent}
       </a>
     );
   }
 
-  return ButtonContent;
+  return (
+    <motion.button
+      type={type}
+      className="focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed"
+      onClick={onClick}
+      disabled={disabled}
+      whileHover={{ scale: 1.0 }}
+      whileTap={{ scale: 1.0 }}
+    >
+      {ButtonContent}
+    </motion.button>
+  );
 }
